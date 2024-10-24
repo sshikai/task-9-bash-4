@@ -1,0 +1,24 @@
+Задание 3-8
+#!/bin/bash
+secret_number=$(( RANDOM % 100 + 1 ))
+attempts=7
+
+echo "Я загадал число от 1 до 100."
+echo "У тебя есть $attempts попыток, чтобы угадать его."
+
+for (( attempt=1; attempt<=attempts; attempt++ ))
+do
+    read -p "Попытка $attempt: Введи своё число: " guess
+
+    if (( guess < secret_number )); then
+        echo "Мое число больше."
+    elif (( guess > secret_number )); then
+        echo "Мое число меньше."
+    else
+        echo "Поздравляю! Ты угадал число!"
+        exit 0
+    fi
+done
+
+echo "К сожалению, ты не угадал. Загаданное число было $secret_number."
+
